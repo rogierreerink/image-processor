@@ -7,7 +7,15 @@
 #include <iostream>
 #include <exception>
 
-/* ---------------------------------------------------------- Implementation */
+/* ----------------------------------------------- Exception Implementations */
+
+NoArguments::NoArguments(): exception() {
+}
+
+InvalidArgument::InvalidArgument(const string &what): invalid_argument(what) {
+}
+
+/* --------------------------------------------------- Class Implementations */
 
 Option::Option(char shortId, const string &longId, const string &description,
 		bool optionRequired, bool inputRequired): ShortId(shortId),
@@ -73,6 +81,11 @@ void Command::ParseOptions(int argc, char **argv) {
 	bool validArgument;
 	unsigned nextArgParsed = 0;
 
+	/* Check for insufficient number of arguments. */
+	if (argc == 1) {
+		throw NoArguments();
+	}
+
 	/* Parse the arguments. */
 	for (unsigned i = 1; i < argc; i++) {
 
@@ -83,13 +96,14 @@ void Command::ParseOptions(int argc, char **argv) {
 
 		unsigned j = 0;
 		unsigned dashCounter = 0;
+		unsigned skipArgument = false;
 
 		/* Interpret each argument character. */
-		while ((character = argv[i][j]) != '\0') {
+		while (!skipArgument && (character = argv[i][j]) != '\0') {
 
 			validArgument = false;
 			
-			/* Check for short-hand or full-name notation. */
+			/* Check for short-hand or long notation. */
 			if (character == '-' && j < 2) {
 				dashCounter++;
 
@@ -110,7 +124,7 @@ void Command::ParseOptions(int argc, char **argv) {
 									nextArgParsed++;
 
 								} else {
-									throw invalid_argument(
+									throw InvalidArgument(
 										string("Argument for option '-")
 										+ character + "' is missing.");
 								}
@@ -122,11 +136,11 @@ void Command::ParseOptions(int argc, char **argv) {
 					}
 
 					if (!validArgument) {
-						throw invalid_argument(string("Argument '-")
+						throw InvalidArgument(string("Argument '-")
 						+ character + "' not recognized.");
 					}
 
-				/* Parse full-name argument. */
+				/* Parse long argument. */
 				} else if (dashCounter == 2) {
 					string argument = string(argv[i]);
 					argument.erase(0, 2);
@@ -144,22 +158,28 @@ void Command::ParseOptions(int argc, char **argv) {
 									nextArgParsed++;
 
 								} else {
-									throw invalid_argument(
+									throw InvalidArgument(
 										string("Argument for option '--")
 										+ argument + "' is missing.");
 								}
 							}
 
+							option->SetOptionSupplied();
+							break;
 						}
 					}
 
 					if (!validArgument) {
-						throw invalid_argument(string("Argument '--")
+						throw InvalidArgument(string("Argument '--")
 						+ argument + "' not recognized.");
 					}
 
+					/* Prevent the next character of this argument
+					 * to be interpreted. */
+					skipArgument = true;
+
 				} else {
-					throw invalid_argument(
+					throw InvalidArgument(
 						string("Invalid argument '") + 
 						string(argv[i]) + "'.");
 				}
@@ -173,14 +193,26 @@ void Command::ParseOptions(int argc, char **argv) {
 	 * option was given, the user probibly doesn't know about any required
 	 * options. */
 	if (HelpOption != nullptr && !HelpOption->IsOptionSupplied()) {
-
+		
 		for (const auto &option: Options) {
 			if (option->IsOptionRequired() && !option->IsOptionSupplied()) {
-				throw invalid_argument(string("Option '-")
+				throw InvalidArgument(string("Option '-")
 				+ option->GetShortId() + "' is required.");
 			}
 		}
 	}
+}
+
+list<Option*> Command::GetSuppliedOptions() const {
+
+	list<Option*> suppliedOptions;
+	for (auto &option: Options) {
+		if (option->IsOptionSupplied()) {
+			suppliedOptions.push_back(option);
+		}
+	}
+
+	return suppliedOptions;
 }
 
 void Command::PrintOptions(ostream& os) {

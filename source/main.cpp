@@ -5,7 +5,6 @@
 /* --------------------------------------------------------- System Includes */
 
 #include <iostream>
-#include <exception>
 
 /* -------------------------------------------------------------- Namespaces */
 
@@ -32,21 +31,34 @@ int main(int argc, char **argv) {
 
 	try {
 		cmd.ParseOptions(argc, argv);
-	} catch (invalid_argument &e) {
 
-		if (argc > 1) {
-			cout << e.what() << endl;
-			return EXIT_FAILURE;
+	} catch (NoArguments &e) {
+		cmd.PrintHelp(cout);
+		return EXIT_FAILURE;
 
-		} else {
-			cmd.PrintHelp(cout);
-			return EXIT_FAILURE;
-		}
+	} catch (InvalidArgument &e) {
+		cout << e.what() << endl;
+		return EXIT_FAILURE;
 	}
 
 	if (optionHelp.IsOptionSupplied()) {
 		cmd.PrintOptions(cout);
 		return EXIT_SUCCESS;
+	}
+
+	auto suppliedOptions = cmd.GetSuppliedOptions();
+	for (auto &suppliedOption: suppliedOptions) {
+		auto shortId = suppliedOption->GetShortId();
+
+		if (shortId == optionPathIn.GetShortId()) {
+			cout << "Input image: " << suppliedOption->GetInput() << endl;
+
+		} else if (shortId == optionPathOut.GetShortId()) {
+			cout << "Output image: " << suppliedOption->GetInput() << endl;
+
+		} else if (shortId == optionViewIn.GetShortId()) {
+			cout << "View mode enabled." << endl;
+		}
 	}
 
 	return EXIT_SUCCESS;

@@ -5,10 +5,23 @@
 #include <ostream>
 #include <list>
 #include <string>
+#include <exception>
 
 /* -------------------------------------------------------------- Namespaces */
 
 using namespace std;
+
+/* -------------------------------------------------------------- Exceptions */
+
+class NoArguments: public exception {
+	public:
+	NoArguments();
+};
+
+class InvalidArgument: public invalid_argument {
+	public:
+	InvalidArgument(const string &what);
+};
 
 /* ----------------------------------------------------------------- Classes */
 
@@ -41,6 +54,7 @@ class Command {
 	void AddOption(Option &option);
 	void SetHelpOption(Option &option);
 	void ParseOptions(int argc, char **argv);
+	list<Option*> GetSuppliedOptions() const;
 	void PrintOptions(ostream &os);
 	void PrintHelp(ostream &os);
 	private:
