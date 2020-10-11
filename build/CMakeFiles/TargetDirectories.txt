@@ -1,0 +1,5 @@
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles/rebuild_cache.dir
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles/edit_cache.dir
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build/CMakeFiles/rebuild_cache.dir
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build/CMakeFiles/edit_cache.dir
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build/CMakeFiles/imageprocessor.dir
