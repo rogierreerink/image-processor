@@ -1,6 +1,8 @@
 /* ---------------------------------------------------------- Local Includes */
 
 #include "command.hpp"
+#include "convolution.hpp"
+#include "median.hpp"
 
 /* --------------------------------------------------------- System Includes */
 

@@ -1,6 +1,6 @@
 #pragma once
 
-/* --------------------------------------------------------- System Includes */
+/* --------------------------------------------------------- System includes */
 
 #include <ostream>
 #include <list>
@@ -23,9 +23,10 @@ class InvalidArgument: public invalid_argument {
 	InvalidArgument(const string &what);
 };
 
-/* ----------------------------------------------------------------- Classes */
+/* --------------------------------------------------------------------- API */
 
 class Option {
+
 	public:
 	Option(const string &longId, const string &description,
 		bool optionRequired, bool inputRequired);
@@ -40,6 +41,7 @@ class Option {
 	bool IsOptionSupplied() const;
 	bool IsOptionRequired() const;
 	bool IsInputRequired() const;
+
 	private:
 	const char ShortId;
 	const string LongId;
@@ -51,6 +53,7 @@ class Option {
 };
 
 class Command {
+	
 	public:
 	Command(const string &identifier, const string &version);
 	void AddOption(Option &option);
@@ -59,6 +62,7 @@ class Command {
 	list<Option*> GetSuppliedOptions() const;
 	void PrintOptions(ostream &os);
 	void PrintHelp(ostream &os);
+
 	private:
 	const string Identifier;
 	const string Version;

@@ -1,13 +1,14 @@
-/* ---------------------------------------------------------- Local Includes */
+/* ---------------------------------------------------------- Local includes */
 
 #include "command.hpp"
 
-/* --------------------------------------------------------- System Includes */
+/* --------------------------------------------------------- System includes */
 
 #include <iostream>
 #include <exception>
 
-/* ----------------------------------------------- Exception Implementations */
+/* -------------------------------------------------------------- Namespaces */
+/* -------------------------------------------------------------- Exceptions */
 
 NoArguments::NoArguments(): exception() {
 }
@@ -15,7 +16,8 @@ NoArguments::NoArguments(): exception() {
 InvalidArgument::InvalidArgument(const string &what): invalid_argument(what) {
 }
 
-/* --------------------------------------------------- Class Implementations */
+/* ------------------------------------------------------------- Private API */
+/* -------------------------------------------------------------- Public API */
 
 Option::Option(const string &longId, const string &description,
 		bool optionRequired, bool inputRequired): ShortId(0),
