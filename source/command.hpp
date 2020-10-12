@@ -27,6 +27,8 @@ class InvalidArgument: public invalid_argument {
 
 class Option {
 	public:
+	Option(const string &longId, const string &description,
+		bool optionRequired, bool inputRequired);
 	Option(char shortId, const string &longId, const string &description,
 		bool optionRequired, bool inputRequired);
 	char GetShortId() const;

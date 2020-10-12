@@ -17,6 +17,12 @@ InvalidArgument::InvalidArgument(const string &what): invalid_argument(what) {
 
 /* --------------------------------------------------- Class Implementations */
 
+Option::Option(const string &longId, const string &description,
+		bool optionRequired, bool inputRequired): ShortId(0),
+		LongId(longId),	Description(description), 
+		OptionRequired(optionRequired),	InputRequired(inputRequired) {
+}
+
 Option::Option(char shortId, const string &longId, const string &description,
 		bool optionRequired, bool inputRequired): ShortId(shortId),
 		LongId(longId),	Description(description), 
@@ -196,8 +202,8 @@ void Command::ParseOptions(int argc, char **argv) {
 		
 		for (const auto &option: Options) {
 			if (option->IsOptionRequired() && !option->IsOptionSupplied()) {
-				throw InvalidArgument(string("Option '-")
-				+ option->GetShortId() + "' is required.");
+				throw InvalidArgument(string("Option '--")
+				+ option->GetLongId() + "' is required.");
 			}
 		}
 	}
@@ -229,8 +235,12 @@ void Command::PrintOptions(ostream& os) {
 
 	for (auto &option: Options) {
 
-		os << "    -" << option->GetShortId()
-			<< ", --" << option->GetLongId();
+		if (option->GetShortId() == 0) {
+			os << "        --" << option->GetLongId();
+		} else {
+			os << "    -" << option->GetShortId()
+				<< ", --" << option->GetLongId();
+		}
 		
 		unsigned numSpaces = LongestId - option->GetLongId().length();
 		for (unsigned i = 0; i < numSpaces; i++) {
