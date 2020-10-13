@@ -10,3 +10,8 @@ using namespace cv;
 
 /* -------------------------------------------------------------- Exceptions */
 /* --------------------------------------------------------------------- API */
+
+namespace Convolution {
+
+	void BoxBlur(const Mat &input, Mat &output, int amount);
+};

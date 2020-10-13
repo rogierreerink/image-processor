@@ -33,11 +33,13 @@ int main(int argc, char **argv) {
 		"Path to the image file to be processed.", true, true};
 	Option optionPathOut = {'o', "output-image",
 		"Path to write the processed image file to.", false, true};
-	Option optionAdjustBrightness = {'b', "adjust-brightness",
+	Option optionAdjustBrightness = {"adjust-brightness",
 		"Adjust the brightness of the image.", false, true};
-	Option optionAdjustContrast = {'c', "adjust-contrast",
+	Option optionAdjustContrast = {"adjust-contrast",
 		"Adjust the contrast of the image.", false, true};
-	Option optionFilterMedian = {'m', "filter-median",
+	Option optionFilterBoxBlur = {"filter-box-blur",
+		"Apply a box blur filter of the given size to the image.", false, true};
+	Option optionFilterMedian = {"filter-median",
 		"Apply a median filter of the given size to the image.", false, true};
 	Option optionViewInOut = {'v', "view-images",
 		"View the input and output images in a window.", false, false};
@@ -57,6 +59,7 @@ int main(int argc, char **argv) {
 	cmd.AddOption(optionPathOut);
 	cmd.AddOption(optionAdjustBrightness);
 	cmd.AddOption(optionAdjustContrast);
+	cmd.AddOption(optionFilterBoxBlur);
 	cmd.AddOption(optionFilterMedian);
 	cmd.AddOption(optionViewInOut);
 	cmd.AddOption(optionViewIn);
@@ -92,6 +95,7 @@ int main(int argc, char **argv) {
 	list<Option*> suppliedProcessingOptions;
 	int adjustBrightnessShift;
 	float adjustContrastFactor;
+	int filterBoxBlurSize;
 	int filterMedianSize;
 
 	/* Process command line options. */
@@ -120,6 +124,16 @@ int main(int argc, char **argv) {
 				"%f", &adjustContrastFactor);
 			if (adjustContrastFactor < 0.0) {
 				cout << "The contrast factor should be a positive, real number."
+					<< endl;
+				return EXIT_FAILURE;
+			}
+
+		} else if (option == &optionFilterBoxBlur) {
+			suppliedProcessingOptions.push_back(&optionFilterBoxBlur);
+			sscanf(optionFilterBoxBlur.GetInput().c_str(),
+				"%i", &filterBoxBlurSize);
+			if (filterBoxBlurSize < 1 || !(filterBoxBlurSize % 2)) {
+				cout << "The box blur filter size should be a natural, odd number."
 					<< endl;
 				return EXIT_FAILURE;
 			}
@@ -169,6 +183,16 @@ int main(int argc, char **argv) {
 			if (adjustContrastFactor != 1.0) {
 				/* My implementation. */
 				Pixel::Contrast(outputImage, adjustContrastFactor);
+			}
+
+		} else if (option == &optionFilterBoxBlur) {
+			if (efficient) {
+				/* OpenCV implementation. */
+				blur(outputImage, outputImage, 
+					Size_<int>(Point_<int>(filterBoxBlurSize, filterBoxBlurSize)));
+			} else {
+				/* My implementation. */
+				Convolution::BoxBlur(outputImage, outputImage, filterBoxBlurSize);
 			}
 
 		} else if (option == &optionFilterMedian) {

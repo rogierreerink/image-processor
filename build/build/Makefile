@@ -144,6 +144,33 @@ imageprocessor/fast:
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/build
 .PHONY : imageprocessor/fast
 
+border.o: border.cpp.o
+
+.PHONY : border.o
+
+# target to build an object file
+border.cpp.o:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/border.cpp.o
+.PHONY : border.cpp.o
+
+border.i: border.cpp.i
+
+.PHONY : border.i
+
+# target to preprocess a source file
+border.cpp.i:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/border.cpp.i
+.PHONY : border.cpp.i
+
+border.s: border.cpp.s
+
+.PHONY : border.s
+
+# target to generate assembly for a file
+border.cpp.s:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/border.cpp.s
+.PHONY : border.cpp.s
+
 command.o: command.cpp.o
 
 .PHONY : command.o
@@ -288,6 +315,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... imageprocessor"
+	@echo "... border.o"
+	@echo "... border.i"
+	@echo "... border.s"
 	@echo "... command.o"
 	@echo "... command.i"
 	@echo "... command.s"

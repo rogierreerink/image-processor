@@ -5,6 +5,7 @@ link_directories(${OpenCV_LIBS_DIR})
 
 # Specify source files
 set(source_files
+	border.cpp
 	command.cpp
 	convolution.cpp
 	median.cpp
