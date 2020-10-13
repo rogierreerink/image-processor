@@ -68,4 +68,5 @@ class Command {
 	const string Version;
 	Option *HelpOption = nullptr;
 	list<Option*> Options;
+	list<Option*> SuppliedOptions;
 };

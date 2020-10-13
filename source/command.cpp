@@ -122,6 +122,7 @@ void Command::ParseOptions(int argc, char **argv) {
 					for (auto &option: Options) {
 
 						if (character == option->GetShortId()) {
+							SuppliedOptions.push_back(option);
 							validArgument = true;
 
 							if (option->IsInputRequired()) {
@@ -156,6 +157,7 @@ void Command::ParseOptions(int argc, char **argv) {
 					for (auto &option: Options) {
 						
 						if (!argument.compare(option->GetLongId())) {
+							SuppliedOptions.push_back(option);
 							validArgument = true;
 
 							if (option->IsInputRequired()) {
@@ -212,15 +214,7 @@ void Command::ParseOptions(int argc, char **argv) {
 }
 
 list<Option*> Command::GetSuppliedOptions() const {
-
-	list<Option*> suppliedOptions;
-	for (auto &option: Options) {
-		if (option->IsOptionSupplied()) {
-			suppliedOptions.push_back(option);
-		}
-	}
-
-	return suppliedOptions;
+	return SuppliedOptions;
 }
 
 void Command::PrintOptions(ostream& os) {
