@@ -90,7 +90,7 @@ void Median::Rectangle(const Mat &input, Mat &output, int width, int height) {
 	int border = max((height - 1) / 2, (width - 1) / 2);
 	
 	/* Expand borders to solve border problem. */
-	Mat temp = input;
+	Mat temp = input.clone();
 	for (int i = 0; i < border; i++) {
 		temp = BorderCopy<Vec3b>(temp);
 	}

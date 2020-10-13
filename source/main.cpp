@@ -174,10 +174,10 @@ int main(int argc, char **argv) {
 		} else if (option == &optionFilterMedian) {
 			if (efficient) {
 				/* OpenCV implementation. */
-				medianBlur(inputImage, outputImage, filterMedianSize);
+				medianBlur(outputImage, outputImage, filterMedianSize);
 			} else {
 				/* My implementation. */
-				Median::Square(inputImage, outputImage, filterMedianSize);
+				Median::Square(outputImage, outputImage, filterMedianSize);
 			}
 		}
 	}
