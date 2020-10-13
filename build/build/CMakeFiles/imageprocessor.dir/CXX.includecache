@@ -6,26 +6,14 @@
 
 #IncludeRegexTransform: 
 
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/command.hpp
-ostream
--
-list
--
-string
--
-exception
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.cpp
+median.hpp
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.hpp
+vector
 -
 
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/main.cpp
-command.hpp
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/command.hpp
-iostream
--
-fstream
--
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.hpp
 opencv2/opencv.hpp
--
-opencv2/highgui.hpp
 -
 
 /usr/include/opencv4/opencv2/calib3d.hpp

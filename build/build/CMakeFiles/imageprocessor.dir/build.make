@@ -102,73 +102,104 @@ build/CMakeFiles/imageprocessor.dir/command.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageprocessor.dir/command.cpp.s"
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/command.cpp" -o CMakeFiles/imageprocessor.dir/command.cpp.s
 
+build/CMakeFiles/imageprocessor.dir/convolution.cpp.o: build/CMakeFiles/imageprocessor.dir/flags.make
+build/CMakeFiles/imageprocessor.dir/convolution.cpp.o: ../source/convolution.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object build/CMakeFiles/imageprocessor.dir/convolution.cpp.o"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageprocessor.dir/convolution.cpp.o -c "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.cpp"
+
+build/CMakeFiles/imageprocessor.dir/convolution.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imageprocessor.dir/convolution.cpp.i"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.cpp" > CMakeFiles/imageprocessor.dir/convolution.cpp.i
+
+build/CMakeFiles/imageprocessor.dir/convolution.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageprocessor.dir/convolution.cpp.s"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.cpp" -o CMakeFiles/imageprocessor.dir/convolution.cpp.s
+
+build/CMakeFiles/imageprocessor.dir/median.cpp.o: build/CMakeFiles/imageprocessor.dir/flags.make
+build/CMakeFiles/imageprocessor.dir/median.cpp.o: ../source/median.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object build/CMakeFiles/imageprocessor.dir/median.cpp.o"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageprocessor.dir/median.cpp.o -c "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.cpp"
+
+build/CMakeFiles/imageprocessor.dir/median.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imageprocessor.dir/median.cpp.i"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.cpp" > CMakeFiles/imageprocessor.dir/median.cpp.i
+
+build/CMakeFiles/imageprocessor.dir/median.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageprocessor.dir/median.cpp.s"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.cpp" -o CMakeFiles/imageprocessor.dir/median.cpp.s
+
 # Object files for target imageprocessor
 imageprocessor_OBJECTS = \
 "CMakeFiles/imageprocessor.dir/main.cpp.o" \
-"CMakeFiles/imageprocessor.dir/command.cpp.o"
+"CMakeFiles/imageprocessor.dir/command.cpp.o" \
+"CMakeFiles/imageprocessor.dir/convolution.cpp.o" \
+"CMakeFiles/imageprocessor.dir/median.cpp.o"
 
 # External object files for target imageprocessor
 imageprocessor_EXTERNAL_OBJECTS =
 
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/main.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/command.cpp.o
+build/imageprocessor: build/CMakeFiles/imageprocessor.dir/convolution.cpp.o
+build/imageprocessor: build/CMakeFiles/imageprocessor.dir/median.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/build.make
-build/imageprocessor: /usr/lib/libopencv_gapi.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_stitching.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_alphamat.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_aruco.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_bgsegm.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_bioinspired.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_ccalib.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_cvv.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_dnn_objdetect.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_dnn_superres.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_dpm.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_face.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_freetype.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_fuzzy.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_hdf.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_hfs.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_img_hash.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_intensity_transform.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_line_descriptor.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_quality.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_rapid.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_reg.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_rgbd.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_saliency.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_stereo.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_structured_light.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_superres.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_surface_matching.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_tracking.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_videostab.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_viz.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_xfeatures2d.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_xobjdetect.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_xphoto.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_shape.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_highgui.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_datasets.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_plot.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_text.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_dnn.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_ml.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_phase_unwrapping.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_optflow.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_ximgproc.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_video.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_videoio.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_imgcodecs.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_objdetect.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_calib3d.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_features2d.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_flann.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_photo.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_imgproc.so.4.4.0
-build/imageprocessor: /usr/lib/libopencv_core.so.4.4.0
+build/imageprocessor: /usr/lib/libopencv_gapi.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_stitching.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_alphamat.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_aruco.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_bgsegm.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_bioinspired.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_ccalib.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_cvv.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_dnn_objdetect.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_dnn_superres.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_dpm.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_face.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_freetype.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_fuzzy.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_hdf.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_hfs.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_img_hash.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_intensity_transform.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_line_descriptor.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_mcc.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_quality.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_rapid.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_reg.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_rgbd.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_saliency.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_stereo.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_structured_light.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_superres.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_surface_matching.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_tracking.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_videostab.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_viz.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_xfeatures2d.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_xobjdetect.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_xphoto.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_shape.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_highgui.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_datasets.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_plot.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_text.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_dnn.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_ml.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_phase_unwrapping.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_optflow.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_ximgproc.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_video.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_videoio.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_imgcodecs.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_objdetect.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_calib3d.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_features2d.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_flann.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_photo.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_imgproc.so.4.5.0
+build/imageprocessor: /usr/lib/libopencv_core.so.4.5.0
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable imageprocessor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable imageprocessor"
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/imageprocessor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

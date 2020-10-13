@@ -171,6 +171,33 @@ command.cpp.s:
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/command.cpp.s
 .PHONY : command.cpp.s
 
+convolution.o: convolution.cpp.o
+
+.PHONY : convolution.o
+
+# target to build an object file
+convolution.cpp.o:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/convolution.cpp.o
+.PHONY : convolution.cpp.o
+
+convolution.i: convolution.cpp.i
+
+.PHONY : convolution.i
+
+# target to preprocess a source file
+convolution.cpp.i:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/convolution.cpp.i
+.PHONY : convolution.cpp.i
+
+convolution.s: convolution.cpp.s
+
+.PHONY : convolution.s
+
+# target to generate assembly for a file
+convolution.cpp.s:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/convolution.cpp.s
+.PHONY : convolution.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -198,6 +225,33 @@ main.cpp.s:
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+median.o: median.cpp.o
+
+.PHONY : median.o
+
+# target to build an object file
+median.cpp.o:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/median.cpp.o
+.PHONY : median.cpp.o
+
+median.i: median.cpp.i
+
+.PHONY : median.i
+
+# target to preprocess a source file
+median.cpp.i:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/median.cpp.i
+.PHONY : median.cpp.i
+
+median.s: median.cpp.s
+
+.PHONY : median.s
+
+# target to generate assembly for a file
+median.cpp.s:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/median.cpp.s
+.PHONY : median.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,9 +264,15 @@ help:
 	@echo "... command.o"
 	@echo "... command.i"
 	@echo "... command.s"
+	@echo "... convolution.o"
+	@echo "... convolution.i"
+	@echo "... convolution.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... median.o"
+	@echo "... median.i"
+	@echo "... median.s"
 .PHONY : help
 
 

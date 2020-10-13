@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdio>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 
@@ -33,6 +34,8 @@ int main(int argc, char **argv) {
 		"Path to the image file to be processed.", true, true};
 	Option optionPathOut = {'o', "output-image",
 		"Path to write the processed image file to.", false, true};
+	Option optionFilterMedian = {'m', "filter-median",
+		"Apply a median filter of the given size to the image.", false, true};
 	Option optionViewInOut = {'v', "view-images",
 		"View the input and output images in a window.", false, false};
 	Option optionViewIn = {"view-input",
@@ -45,6 +48,7 @@ int main(int argc, char **argv) {
 	Command cmd("Image Processor", "1.0");
 	cmd.AddOption(optionPathIn);
 	cmd.AddOption(optionPathOut);
+	cmd.AddOption(optionFilterMedian);
 	cmd.AddOption(optionViewInOut);
 	cmd.AddOption(optionViewIn);
 	cmd.AddOption(optionViewOut);
@@ -70,6 +74,8 @@ int main(int argc, char **argv) {
 
 	string inputPath;
 	string outputPath;
+	int filterMedianSize;
+	bool filterMedian = false;
 	bool viewInput = false;
 	bool viewOutput = false;
 	bool viewHistogram = false;
@@ -88,6 +94,16 @@ int main(int argc, char **argv) {
 		} else if (suppliedOption == &optionPathOut) {
 			outputPath = optionPathOut.GetInput();
 
+		} else if (suppliedOption == &optionFilterMedian) {
+			filterMedian = true;
+			sscanf(optionFilterMedian.GetInput().c_str(),
+				"%i", &filterMedianSize);
+			if (filterMedianSize < 1 || !(filterMedianSize % 2)) {
+				cout << "The median filter size should be a natural, odd number."
+					<< endl;
+				return EXIT_FAILURE;
+			}
+
 		} else if (suppliedOption == &optionViewInOut) {
 			viewInput = true;
 			viewOutput = true;
@@ -104,7 +120,11 @@ int main(int argc, char **argv) {
 	}
 
 	Mat inputImage = imread(inputPath, IMREAD_COLOR);
-	Mat outputImage = inputImage;
+	Mat outputImage(inputImage.rows, inputImage.cols, inputImage.type());
+
+	if (filterMedian) {
+		Median::Square(inputImage, outputImage, filterMedianSize);
+	}
 	
 	if (viewInput || viewOutput || viewHistogram) {
 
