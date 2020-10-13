@@ -156,8 +156,7 @@ int main(int argc, char **argv) {
 	Mat inputImage = imread(inputPath, IMREAD_COLOR);
 	Mat outputImage = inputImage.clone();
 
-	/* Process the output image in the order in which
-	 * the options were supplied. */
+	/* Process the output image in the order in which the options were supplied. */
 	for (auto &option: suppliedProcessingOptions) {
 
 		if (option == &optionAdjustBrightness) {
@@ -168,7 +167,6 @@ int main(int argc, char **argv) {
 
 		} else if (option == &optionAdjustContrast) {
 			if (adjustContrastFactor != 1.0) {
-				cout << adjustContrastFactor << endl;
 				/* My implementation. */
 				Pixel::Contrast(outputImage, adjustContrastFactor);
 			}
