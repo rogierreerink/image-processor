@@ -1,5 +1,6 @@
 /* ---------------------------------------------------------- Local includes */
 
+#include "border.hpp"
 #include "median.hpp"
 
 /* --------------------------------------------------------- System includes */
@@ -12,51 +13,6 @@ using namespace std;
 
 /* -------------------------------------------------------------- Exceptions */
 /* ------------------------------------------------------------- Private API */
-
-/**
- * @brief For solving the border problem.
- */
-template <typename T>
-static Mat BorderCopy(Mat &input) {
-
-	Mat temp = Mat::zeros(input.rows + 2, input.cols + 2, input.type());
-
-	/* Copy the left and right sides. */
-	for (int row = 0; row < input.rows; row++) {
-		temp.at<T>(row + 1, 0) = 
-			input.at<T>(row, 0);
-		temp.at<T>(row + 1, temp.cols - 1) = 
-			input.at<T>(row, input.cols - 1);
-	}
-
-	/* Copy the top and bottom sides. */
-	for (int col = 0; col < input.cols; col++) {
-		temp.at<T>(0, col + 1) = 
-			input.at<T>(0, col);
-		temp.at<T>(temp.rows - 1, col + 1) = 
-			input.at<T>(input.rows - 1, col);
-	}
-
-	/* Copy the corners. */
-	temp.at<T>(0, 0) = 
-		input.at<T>(0, 0);
-	temp.at<T>(temp.rows - 1, 0) = 
-		input.at<T>(input.rows - 1, 0);
-	temp.at<T>(0, temp.cols - 1) = 
-		input.at<T>(0, input.cols - 1);
-	temp.at<T>(temp.rows - 1, temp.cols - 1) = 
-		input.at<T>(input.rows - 1, input.cols - 1);
-
-	/* Copy the rest of the image. */
-	for (int row = 0; row < input.rows; row++) {
-		for (int col = 0; col < input.cols; col++) {
-			temp.at<T>(row + 1, col + 1) = 
-				input.at<T>(row, col);
-		}
-	}
-
-	return temp;
-}
 
 /**
  * @brief Sort the content of a vector.
@@ -92,7 +48,7 @@ void Median::Rectangle(const Mat &input, Mat &output, int width, int height) {
 	/* Expand borders to solve border problem. */
 	Mat temp = input.clone();
 	for (int i = 0; i < border; i++) {
-		temp = BorderCopy<Vec3b>(temp);
+		temp = Border::Copy(temp);
 	}
 
 	/* Preallocate vector memory. */
