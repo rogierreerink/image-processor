@@ -43,7 +43,7 @@ static void NormalSort(vector<T> &input, vector<T> &output) {
 
 void Median::Rectangle(const Mat &input, Mat &output, int width, int height) {
 
-	int border = max((height - 1) / 2, (width - 1) / 2);
+	const int border = max((height - 1) / 2, (width - 1) / 2);
 	
 	/* Expand borders to solve border problem. */
 	Mat temp = input.clone();
@@ -57,14 +57,14 @@ void Median::Rectangle(const Mat &input, Mat &output, int width, int height) {
 	area.reserve(width * height);
 	areaSorted.reserve(width * height);
 
-	/* Apply median filter. */
+	/* Apply filter. */
 	for (int channel = 0; channel < output.channels(); channel++) {
 		for (int row = 0; row < output.rows; row++) {
 			for (int col = 0; col < output.cols; col++) {
 
 				area.clear();
-				int tempRow = row + border;
-				int tempCol = col + border;
+				const int tempRow = row + border;
+				const int tempCol = col + border;
 				for (int areaRow = - border; areaRow < height - border; areaRow++) {
 					for (int areaCol = - border; areaCol < width - border; areaCol++) {
 						area.push_back(temp.at<Vec3b>

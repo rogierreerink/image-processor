@@ -14,7 +14,7 @@ void Pixel::Brightness(Mat &image, int shift) {
 		for (int row = 0; row < image.rows; row++) {
 			for (int col = 0; col < image.cols; col++) {
 
-				int newPixel 
+				const int newPixel 
 					= (float)image.at<Vec3b>(row, col)[channel] + shift;
 
 				if (newPixel > 255) {
@@ -35,7 +35,7 @@ void Pixel::Contrast(Mat &image, float factor) {
 		for (int row = 0; row < image.rows; row++) {
 			for (int col = 0; col < image.cols; col++) {
 
-				float newPixel 
+				const float newPixel 
 					= ((float)image.at<Vec3b>(row, col)[channel] - 127) * factor + 127;
 
 				if (newPixel > 255) {
