@@ -59,41 +59,6 @@ static Mat BorderCopy(Mat &input) {
 }
 
 /**
- * @brief Sort the content of a vector of vectors on each's summed value.
- * @typename T Type of each vector element of the vector.
- * @typename N Number of elements per vector element.
- * @typename S Type should be able to hold the sum of each vector's elements.
- */
-template <typename T, unsigned N, typename S>
-static void BrightnessSort(vector<Vec<T,N>> &input, vector<Vec<T,N>> &output) {
-
-	output.clear();
-	while (input.size()) {
-
-		S brightnessMax = 0;
-		auto it = input.begin();
-		auto itMax = it;
-		while (it != input.end()) {
-
-			S brightness = 0;
-			for (int channel = 0; channel < N; channel++) {
-				brightness += (*it)[channel];
-			}
-
-			if (brightness >= brightnessMax) {
-				brightnessMax = brightness;
-				itMax = it;
-			}
-			
-			it++;
-		}
-		
-		output.push_back(*itMax);
-		input.erase(itMax);
-	}
-}
-
-/**
  * @brief Sort the content of a vector.
  * @typename T Type of the vector elements.
  */
@@ -158,26 +123,6 @@ void Median::Rectangle(const Mat &input, Mat &output, int width, int height) {
 			}
 		}
 	}
-
-	/* Apply median filter. */
-	// Mat result(input.rows, input.cols, input.type());
-	// for (int row = border; row < temp.rows - border; row++) {
-	// 	for (int col = border; col < temp.cols - border; col++) {
-			
-	// 		vector<Vec3b> area;
-	// 		for (int areaRow = - border; areaRow < height - border; areaRow++) {
-	// 			for (int areaCol = - border; areaCol < width - border; areaCol++) {
-	// 				area.push_back(
-	// 					temp.at<Vec3b>(row + areaRow, col + areaCol));
-	// 			}
-	// 		}
-
-	// 		vector<Vec3b> areaSorted;
-	// 		BrightnessSort<uchar, 3, int>(area, areaSorted);
-	// 		result.at<Vec3b>(row - border, col - border)
-	// 			= areaSorted[areaSorted.size() / 2];
-	// 	}
-	// }
 }
 
 void Median::Square(const Mat &input, Mat &output, int side) {
