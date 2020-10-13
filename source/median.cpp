@@ -102,7 +102,7 @@ void Median::Rectangle(const Mat &input, Mat &output, int width, int height) {
 	areaSorted.reserve(width * height);
 
 	/* Apply median filter. */
-	for (int channel = 0; channel < 3; channel++) {
+	for (int channel = 0; channel < output.channels(); channel++) {
 		for (int row = 0; row < output.rows; row++) {
 			for (int col = 0; col < output.cols; col++) {
 
