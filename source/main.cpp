@@ -3,6 +3,7 @@
 #include "command.hpp"
 #include "convolution.hpp"
 #include "median.hpp"
+#include "pixel.hpp"
 
 /* --------------------------------------------------------- System Includes */
 
@@ -28,12 +29,14 @@ static bool fileExists(const string &path) {
 
 int main(int argc, char **argv) {
 
-	Option optionHelp = {'h', "help",
-		"Print this help menu.", false, false};
 	Option optionPathIn = {'i', "input-image",
 		"Path to the image file to be processed.", true, true};
 	Option optionPathOut = {'o', "output-image",
 		"Path to write the processed image file to.", false, true};
+	Option optionAdjustBrightness = {'b', "adjust-brightness",
+		"Adjust the brightness of the image.", false, true};
+	Option optionAdjustContrast = {'c', "adjust-contrast",
+		"Adjust the contrast of the image.", false, true};
 	Option optionFilterMedian = {'m', "filter-median",
 		"Apply a median filter of the given size to the image.", false, true};
 	Option optionViewInOut = {'v', "view-images",
@@ -44,15 +47,22 @@ int main(int argc, char **argv) {
 		"View the output image in a window.", false, false};
 	Option optionViewHistogram = {"view-histogram",
 		"View the the histogram of the displayed image(s) in a window.", false, false};
+	Option optionEfficient = {'e', "efficient",
+		"Prefer the use of OpenCV built-in filtering and manipulation routines.", false, false};
+	Option optionHelp = {'h', "help",
+		"Print this help menu.", false, false};
 
 	Command cmd("Image Processor", "1.0");
 	cmd.AddOption(optionPathIn);
 	cmd.AddOption(optionPathOut);
+	cmd.AddOption(optionAdjustBrightness);
+	cmd.AddOption(optionAdjustContrast);
 	cmd.AddOption(optionFilterMedian);
 	cmd.AddOption(optionViewInOut);
 	cmd.AddOption(optionViewIn);
 	cmd.AddOption(optionViewOut);
 	cmd.AddOption(optionViewHistogram);
+	cmd.AddOption(optionEfficient);
 	cmd.SetHelpOption(optionHelp);
 	
 	try {
@@ -74,15 +84,20 @@ int main(int argc, char **argv) {
 
 	string inputPath;
 	string outputPath;
-	int filterMedianSize;
-	bool filterMedian = false;
 	bool viewInput = false;
 	bool viewOutput = false;
 	bool viewHistogram = false;
+	bool efficient = false;
 
-	for (auto &suppliedOption: cmd.GetSuppliedOptions()) {
+	list<Option*> suppliedProcessingOptions;
+	int adjustBrightnessShift;
+	float adjustContrastFactor;
+	int filterMedianSize;
 
-		if (suppliedOption == &optionPathIn) {
+	/* Process command line options. */
+	for (auto &option: cmd.GetSuppliedOptions()) {
+
+		if (option == &optionPathIn) {
 			if (fileExists(optionPathIn.GetInput())) {
 				inputPath = optionPathIn.GetInput();
 			} else {
@@ -91,11 +106,26 @@ int main(int argc, char **argv) {
 				return EXIT_FAILURE;
 			}
 
-		} else if (suppliedOption == &optionPathOut) {
+		} else if (option == &optionPathOut) {
 			outputPath = optionPathOut.GetInput();
 
-		} else if (suppliedOption == &optionFilterMedian) {
-			filterMedian = true;
+		} else if (option == &optionAdjustBrightness) {
+			suppliedProcessingOptions.push_back(&optionAdjustBrightness);
+			sscanf(optionAdjustBrightness.GetInput().c_str(),
+				"%i", &adjustBrightnessShift);
+
+		} else if (option == &optionAdjustContrast) {
+			suppliedProcessingOptions.push_back(&optionAdjustContrast);
+			sscanf(optionAdjustContrast.GetInput().c_str(),
+				"%f", &adjustContrastFactor);
+			if (adjustContrastFactor < 0.0) {
+				cout << "The contrast factor should be a positive, real number."
+					<< endl;
+				return EXIT_FAILURE;
+			}
+
+		} else if (option == &optionFilterMedian) {
+			suppliedProcessingOptions.push_back(&optionFilterMedian);
 			sscanf(optionFilterMedian.GetInput().c_str(),
 				"%i", &filterMedianSize);
 			if (filterMedianSize < 1 || !(filterMedianSize % 2)) {
@@ -104,28 +134,57 @@ int main(int argc, char **argv) {
 				return EXIT_FAILURE;
 			}
 
-		} else if (suppliedOption == &optionViewInOut) {
+		} else if (option == &optionViewInOut) {
 			viewInput = true;
 			viewOutput = true;
 
-		} else if (suppliedOption == &optionViewIn) {
+		} else if (option == &optionViewIn) {
 			viewInput = true;
 
-		} else if (suppliedOption == &optionViewOut) {
+		} else if (option == &optionViewOut) {
 			viewOutput = true;
 
-		} else if (suppliedOption == &optionViewHistogram) {
+		} else if (option == &optionViewHistogram) {
 			viewHistogram = true;
+
+		} else if (option == &optionEfficient) {
+			efficient = true;
 		}
 	}
 
+	/* Load the input image (copy to the output image). */
 	Mat inputImage = imread(inputPath, IMREAD_COLOR);
-	Mat outputImage(inputImage.rows, inputImage.cols, inputImage.type());
+	Mat outputImage = inputImage.clone();
 
-	if (filterMedian) {
-		Median::Square(inputImage, outputImage, filterMedianSize);
+	/* Process the output image in the order in which
+	 * the options were supplied. */
+	for (auto &option: suppliedProcessingOptions) {
+
+		if (option == &optionAdjustBrightness) {
+			if (adjustBrightnessShift != 0) {
+				/* My implementation. */
+				Pixel::Brightness(outputImage, adjustBrightnessShift);
+			}
+
+		} else if (option == &optionAdjustContrast) {
+			if (adjustContrastFactor != 1.0) {
+				cout << adjustContrastFactor << endl;
+				/* My implementation. */
+				Pixel::Contrast(outputImage, adjustContrastFactor);
+			}
+
+		} else if (option == &optionFilterMedian) {
+			if (efficient) {
+				/* OpenCV implementation. */
+				medianBlur(inputImage, outputImage, filterMedianSize);
+			} else {
+				/* My implementation. */
+				Median::Square(inputImage, outputImage, filterMedianSize);
+			}
+		}
 	}
 	
+	/* View image(s). */
 	if (viewInput || viewOutput || viewHistogram) {
 
 		const string inputImageWindow = "Input Image";

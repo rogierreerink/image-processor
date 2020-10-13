@@ -252,6 +252,33 @@ median.cpp.s:
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/median.cpp.s
 .PHONY : median.cpp.s
 
+pixel.o: pixel.cpp.o
+
+.PHONY : pixel.o
+
+# target to build an object file
+pixel.cpp.o:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/pixel.cpp.o
+.PHONY : pixel.cpp.o
+
+pixel.i: pixel.cpp.i
+
+.PHONY : pixel.i
+
+# target to preprocess a source file
+pixel.cpp.i:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/pixel.cpp.i
+.PHONY : pixel.cpp.i
+
+pixel.s: pixel.cpp.s
+
+.PHONY : pixel.s
+
+# target to generate assembly for a file
+pixel.cpp.s:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/pixel.cpp.s
+.PHONY : pixel.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -273,6 +300,9 @@ help:
 	@echo "... median.o"
 	@echo "... median.i"
 	@echo "... median.s"
+	@echo "... pixel.o"
+	@echo "... pixel.i"
+	@echo "... pixel.s"
 .PHONY : help
 
 

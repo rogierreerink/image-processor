@@ -7,7 +7,8 @@ link_directories(${OpenCV_LIBS_DIR})
 set(source_files
 	command.cpp
 	convolution.cpp
-	median.cpp)
+	median.cpp
+	pixel.cpp)
 
 # Create exetutable
 add_executable(imageprocessor main.cpp ${source_files})

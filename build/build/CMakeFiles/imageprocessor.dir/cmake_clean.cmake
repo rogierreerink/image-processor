@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/imageprocessor.dir/convolution.cpp.o"
   "CMakeFiles/imageprocessor.dir/main.cpp.o"
   "CMakeFiles/imageprocessor.dir/median.cpp.o"
+  "CMakeFiles/imageprocessor.dir/pixel.cpp.o"
   "imageprocessor"
   "imageprocessor.pdb"
 )
