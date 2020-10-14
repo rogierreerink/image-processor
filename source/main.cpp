@@ -11,13 +11,15 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <chrono>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 
 /* -------------------------------------------------------------- Namespaces */
 
-using namespace std;
+using namespace chrono;
 using namespace cv;
+using namespace std;
 
 /* -------------------------------------------------------- Static functions */
 
@@ -187,10 +189,14 @@ int main(int argc, char **argv) {
 	/* Process the output image in the order in which the options were supplied. */
 	for (auto &option: suppliedProcessingOptions) {
 
+		/* Measure processing time when the verbose option is set. */
+		steady_clock::time_point tStart, tEnd;
+
 		if (option == &optionAdjustBrightness) {
 			
 			if (verbose) {
 				cout << "Adjusting brightness... ";
+				tStart = steady_clock::now();
 			}
 
 			if (adjustBrightnessShift != 0) {
@@ -199,13 +205,17 @@ int main(int argc, char **argv) {
 			}
 
 			if (verbose) {
-				cout << "Done." << endl;
+				tEnd = steady_clock::now();
+				cout << "Done in " 
+					<< duration_cast<duration<double>>(tEnd - tStart).count()
+					<< " seconds." << endl;
 			}
 
 		} else if (option == &optionAdjustContrast) {
 
 			if (verbose) {
 				cout << "Adjusting contrast... ";
+				tStart = steady_clock::now();
 			}
 
 			if (adjustContrastFactor != 1.0) {
@@ -214,29 +224,37 @@ int main(int argc, char **argv) {
 			}
 
 			if (verbose) {
-				cout << "Done." << endl;
+				tEnd = steady_clock::now();
+				cout << "Done in " 
+					<< duration_cast<duration<double>>(tEnd - tStart).count()
+					<< " seconds." << endl;
 			}
 
 		} else if (option == &optionFilterBayer) {
 
 			if (verbose) {
 				cout << "Applying Bayer filter... ";
+				tStart = steady_clock::now();
 			}
 
 			/* My implementation. */
 			Demosaic::Bayer(outputImage, outputImage);
 
 			if (verbose) {
-				cout << "Done." << endl;
+				tEnd = steady_clock::now();
+				cout << "Done in " 
+					<< duration_cast<duration<double>>(tEnd - tStart).count()
+					<< " seconds." << endl;
 			}
 
 		} else if (option == &optionFilterBoxBlur) {
 
 			if (verbose) {
 				cout << "Applying box blur filter... ";
+				tStart = steady_clock::now();
 			}
 
-			if (filterBoxBlurSize == 1) {
+			if (filterBoxBlurSize != 1) {
 				if (efficient) {
 					/* OpenCV implementation. */
 					blur(outputImage, outputImage, 
@@ -248,16 +266,20 @@ int main(int argc, char **argv) {
 			}
 
 			if (verbose) {
-				cout << "Done." << endl;
+				tEnd = steady_clock::now();
+				cout << "Done in " 
+					<< duration_cast<duration<double>>(tEnd - tStart).count()
+					<< " seconds." << endl;
 			}
 
 		} else if (option == &optionFilterMedian) {
 
 			if (verbose) {
 				cout << "Applying median filter... ";
+				tStart = steady_clock::now();
 			}
 
-			if (filterMedianSize == 1) {
+			if (filterMedianSize != 1) {
 				if (efficient) {
 					/* OpenCV implementation. */
 					medianBlur(outputImage, outputImage, filterMedianSize);
@@ -268,7 +290,10 @@ int main(int argc, char **argv) {
 			}
 
 			if (verbose) {
-				cout << "Done." << endl;
+				tEnd = steady_clock::now();
+				cout << "Done in " 
+					<< duration_cast<duration<double>>(tEnd - tStart).count()
+					<< " seconds." << endl;
 			}
 		}
 	}
