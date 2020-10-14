@@ -225,6 +225,33 @@ convolution.cpp.s:
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/convolution.cpp.s
 .PHONY : convolution.cpp.s
 
+demosaic.o: demosaic.cpp.o
+
+.PHONY : demosaic.o
+
+# target to build an object file
+demosaic.cpp.o:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/demosaic.cpp.o
+.PHONY : demosaic.cpp.o
+
+demosaic.i: demosaic.cpp.i
+
+.PHONY : demosaic.i
+
+# target to preprocess a source file
+demosaic.cpp.i:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/demosaic.cpp.i
+.PHONY : demosaic.cpp.i
+
+demosaic.s: demosaic.cpp.s
+
+.PHONY : demosaic.s
+
+# target to generate assembly for a file
+demosaic.cpp.s:
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build" && $(MAKE) $(MAKESILENT) -f build/CMakeFiles/imageprocessor.dir/build.make build/CMakeFiles/imageprocessor.dir/demosaic.cpp.s
+.PHONY : demosaic.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -324,6 +351,9 @@ help:
 	@echo "... convolution.o"
 	@echo "... convolution.i"
 	@echo "... convolution.s"
+	@echo "... demosaic.o"
+	@echo "... demosaic.i"
+	@echo "... demosaic.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

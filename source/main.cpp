@@ -2,6 +2,7 @@
 
 #include "command.hpp"
 #include "convolution.hpp"
+#include "demosaic.hpp"
 #include "median.hpp"
 #include "pixel.hpp"
 
@@ -37,11 +38,13 @@ int main(int argc, char **argv) {
 		"Adjust the brightness of the image.", false, true};
 	Option optionAdjustContrast = {"adjust-contrast",
 		"Adjust the contrast of the image.", false, true};
+	Option optionFilterBayer = {"filter-bayer",
+		"Apply a Bayer filter to the image.", false, false};
 	Option optionFilterBoxBlur = {"filter-box-blur",
 		"Apply a box blur filter of the given size to the image.", false, true};
 	Option optionFilterMedian = {"filter-median",
 		"Apply a median filter of the given size to the image.", false, true};
-	Option optionViewInOut = {'v', "view-images",
+	Option optionViewInOut = {"view-images",
 		"View the input and output images in a window.", false, false};
 	Option optionViewIn = {"view-input",
 		"View the input image in a window.", false, false};
@@ -50,7 +53,9 @@ int main(int argc, char **argv) {
 	Option optionViewHistogram = {"view-histogram",
 		"View the the histogram of the displayed image(s) in a window.", false, false};
 	Option optionEfficient = {'e', "efficient",
-		"Prefer the use of OpenCV built-in filtering and manipulation routines.", false, false};
+		"Prefer the use of OpenCV built-in image processing routines.", false, false};
+	Option optionVerbose = {'v', "verbose",
+		"Print process status.", false, false};
 	Option optionHelp = {'h', "help",
 		"Print this help menu.", false, false};
 
@@ -59,6 +64,7 @@ int main(int argc, char **argv) {
 	cmd.AddOption(optionPathOut);
 	cmd.AddOption(optionAdjustBrightness);
 	cmd.AddOption(optionAdjustContrast);
+	cmd.AddOption(optionFilterBayer);
 	cmd.AddOption(optionFilterBoxBlur);
 	cmd.AddOption(optionFilterMedian);
 	cmd.AddOption(optionViewInOut);
@@ -66,6 +72,7 @@ int main(int argc, char **argv) {
 	cmd.AddOption(optionViewOut);
 	cmd.AddOption(optionViewHistogram);
 	cmd.AddOption(optionEfficient);
+	cmd.AddOption(optionVerbose);
 	cmd.SetHelpOption(optionHelp);
 	
 	try {
@@ -91,12 +98,13 @@ int main(int argc, char **argv) {
 	bool viewOutput = false;
 	bool viewHistogram = false;
 	bool efficient = false;
+	bool verbose = false;
 
 	list<Option*> suppliedProcessingOptions;
-	int adjustBrightnessShift;
-	float adjustContrastFactor;
-	int filterBoxBlurSize;
-	int filterMedianSize;
+	int adjustBrightnessShift = 0;
+	float adjustContrastFactor = 1;
+	int filterBoxBlurSize = 1;
+	int filterMedianSize = 1;
 
 	/* Process command line options. */
 	for (auto &option: cmd.GetSuppliedOptions()) {
@@ -128,6 +136,9 @@ int main(int argc, char **argv) {
 				return EXIT_FAILURE;
 			}
 
+		} else if (option == &optionFilterBayer) {
+			suppliedProcessingOptions.push_back(&optionFilterBayer);
+		
 		} else if (option == &optionFilterBoxBlur) {
 			suppliedProcessingOptions.push_back(&optionFilterBoxBlur);
 			sscanf(optionFilterBoxBlur.GetInput().c_str(),
@@ -163,6 +174,9 @@ int main(int argc, char **argv) {
 
 		} else if (option == &optionEfficient) {
 			efficient = true;
+
+		} else if (option == &optionVerbose) {
+			verbose = true;
 		}
 	}
 
@@ -174,34 +188,87 @@ int main(int argc, char **argv) {
 	for (auto &option: suppliedProcessingOptions) {
 
 		if (option == &optionAdjustBrightness) {
+			
+			if (verbose) {
+				cout << "Adjusting brightness... ";
+			}
+
 			if (adjustBrightnessShift != 0) {
 				/* My implementation. */
 				Pixel::Brightness(outputImage, adjustBrightnessShift);
 			}
 
+			if (verbose) {
+				cout << "Done." << endl;
+			}
+
 		} else if (option == &optionAdjustContrast) {
+
+			if (verbose) {
+				cout << "Adjusting contrast... ";
+			}
+
 			if (adjustContrastFactor != 1.0) {
 				/* My implementation. */
 				Pixel::Contrast(outputImage, adjustContrastFactor);
 			}
 
+			if (verbose) {
+				cout << "Done." << endl;
+			}
+
+		} else if (option == &optionFilterBayer) {
+
+			if (verbose) {
+				cout << "Applying Bayer filter... ";
+			}
+
+			/* My implementation. */
+			Demosaic::Bayer(outputImage, outputImage);
+
+			if (verbose) {
+				cout << "Done." << endl;
+			}
+
 		} else if (option == &optionFilterBoxBlur) {
-			if (efficient) {
-				/* OpenCV implementation. */
-				blur(outputImage, outputImage, 
-					Size_<int>(Point_<int>(filterBoxBlurSize, filterBoxBlurSize)));
-			} else {
-				/* My implementation. */
-				Convolution::BoxBlur(outputImage, outputImage, filterBoxBlurSize);
+
+			if (verbose) {
+				cout << "Applying box blur filter... ";
+			}
+
+			if (filterBoxBlurSize == 1) {
+				if (efficient) {
+					/* OpenCV implementation. */
+					blur(outputImage, outputImage, 
+						Size_<int>(Point_<int>(filterBoxBlurSize, filterBoxBlurSize)));
+				} else {
+					/* My implementation. */
+					Convolution::BoxBlur(outputImage, outputImage, filterBoxBlurSize);
+				}
+			}
+
+			if (verbose) {
+				cout << "Done." << endl;
 			}
 
 		} else if (option == &optionFilterMedian) {
-			if (efficient) {
-				/* OpenCV implementation. */
-				medianBlur(outputImage, outputImage, filterMedianSize);
-			} else {
-				/* My implementation. */
-				Median::Square(outputImage, outputImage, filterMedianSize);
+
+			if (verbose) {
+				cout << "Applying median filter... ";
+			}
+
+			if (filterMedianSize == 1) {
+				if (efficient) {
+					/* OpenCV implementation. */
+					medianBlur(outputImage, outputImage, filterMedianSize);
+				} else {
+					/* My implementation. */
+					Median::Square(outputImage, outputImage, filterMedianSize);
+				}
+			}
+
+			if (verbose) {
+				cout << "Done." << endl;
 			}
 		}
 	}
@@ -233,10 +300,6 @@ int main(int argc, char **argv) {
 		while (!exit && (key = waitKey(2000))) {
 			
 			switch (key) {
-
-				/* Do something */
-				case 'x':
-					break;
 
 				/* Exit the loop when 'ESC' or 'Q' is pressed. */
 				case 0x1B:

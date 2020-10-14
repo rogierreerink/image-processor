@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/imageprocessor.dir/border.cpp.o"
   "CMakeFiles/imageprocessor.dir/command.cpp.o"
   "CMakeFiles/imageprocessor.dir/convolution.cpp.o"
+  "CMakeFiles/imageprocessor.dir/demosaic.cpp.o"
   "CMakeFiles/imageprocessor.dir/main.cpp.o"
   "CMakeFiles/imageprocessor.dir/median.cpp.o"
   "CMakeFiles/imageprocessor.dir/pixel.cpp.o"

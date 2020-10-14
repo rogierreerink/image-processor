@@ -8,6 +8,7 @@ set(source_files
 	border.cpp
 	command.cpp
 	convolution.cpp
+	demosaic.cpp
 	median.cpp
 	pixel.cpp)
 

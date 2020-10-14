@@ -128,9 +128,22 @@ build/CMakeFiles/imageprocessor.dir/convolution.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageprocessor.dir/convolution.cpp.s"
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.cpp" -o CMakeFiles/imageprocessor.dir/convolution.cpp.s
 
+build/CMakeFiles/imageprocessor.dir/demosaic.cpp.o: build/CMakeFiles/imageprocessor.dir/flags.make
+build/CMakeFiles/imageprocessor.dir/demosaic.cpp.o: ../source/demosaic.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object build/CMakeFiles/imageprocessor.dir/demosaic.cpp.o"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageprocessor.dir/demosaic.cpp.o -c "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/demosaic.cpp"
+
+build/CMakeFiles/imageprocessor.dir/demosaic.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imageprocessor.dir/demosaic.cpp.i"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/demosaic.cpp" > CMakeFiles/imageprocessor.dir/demosaic.cpp.i
+
+build/CMakeFiles/imageprocessor.dir/demosaic.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageprocessor.dir/demosaic.cpp.s"
+	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/demosaic.cpp" -o CMakeFiles/imageprocessor.dir/demosaic.cpp.s
+
 build/CMakeFiles/imageprocessor.dir/median.cpp.o: build/CMakeFiles/imageprocessor.dir/flags.make
 build/CMakeFiles/imageprocessor.dir/median.cpp.o: ../source/median.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object build/CMakeFiles/imageprocessor.dir/median.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object build/CMakeFiles/imageprocessor.dir/median.cpp.o"
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageprocessor.dir/median.cpp.o -c "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.cpp"
 
 build/CMakeFiles/imageprocessor.dir/median.cpp.i: cmake_force
@@ -143,7 +156,7 @@ build/CMakeFiles/imageprocessor.dir/median.cpp.s: cmake_force
 
 build/CMakeFiles/imageprocessor.dir/pixel.cpp.o: build/CMakeFiles/imageprocessor.dir/flags.make
 build/CMakeFiles/imageprocessor.dir/pixel.cpp.o: ../source/pixel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object build/CMakeFiles/imageprocessor.dir/pixel.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object build/CMakeFiles/imageprocessor.dir/pixel.cpp.o"
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageprocessor.dir/pixel.cpp.o -c "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/pixel.cpp"
 
 build/CMakeFiles/imageprocessor.dir/pixel.cpp.i: cmake_force
@@ -160,6 +173,7 @@ imageprocessor_OBJECTS = \
 "CMakeFiles/imageprocessor.dir/border.cpp.o" \
 "CMakeFiles/imageprocessor.dir/command.cpp.o" \
 "CMakeFiles/imageprocessor.dir/convolution.cpp.o" \
+"CMakeFiles/imageprocessor.dir/demosaic.cpp.o" \
 "CMakeFiles/imageprocessor.dir/median.cpp.o" \
 "CMakeFiles/imageprocessor.dir/pixel.cpp.o"
 
@@ -170,6 +184,7 @@ build/imageprocessor: build/CMakeFiles/imageprocessor.dir/main.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/border.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/command.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/convolution.cpp.o
+build/imageprocessor: build/CMakeFiles/imageprocessor.dir/demosaic.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/median.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/pixel.cpp.o
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/build.make
@@ -229,7 +244,7 @@ build/imageprocessor: /usr/lib/libopencv_photo.so.4.5.0
 build/imageprocessor: /usr/lib/libopencv_imgproc.so.4.5.0
 build/imageprocessor: /usr/lib/libopencv_core.so.4.5.0
 build/imageprocessor: build/CMakeFiles/imageprocessor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable imageprocessor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable imageprocessor"
 	cd "/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/build/build" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/imageprocessor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

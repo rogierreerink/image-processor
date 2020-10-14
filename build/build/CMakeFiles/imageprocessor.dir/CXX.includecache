@@ -20,11 +20,17 @@ exception
 opencv2/opencv.hpp
 -
 
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/demosaic.hpp
+opencv2/opencv.hpp
+-
+
 /home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/main.cpp
 command.hpp
 /home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/command.hpp
 convolution.hpp
 /home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.hpp
+demosaic.hpp
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/demosaic.hpp
 median.hpp
 /home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.hpp
 pixel.hpp
