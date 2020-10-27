@@ -6,50 +6,10 @@
 
 #IncludeRegexTransform: 
 
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/command.hpp
-ostream
--
-list
--
-string
--
-exception
--
-
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.hpp
-opencv2/opencv.hpp
--
-
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/demosaic.hpp
-opencv2/opencv.hpp
--
-
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/main.cpp
-command.hpp
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/command.hpp
-convolution.hpp
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.hpp
-demosaic.hpp
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/demosaic.hpp
-median.hpp
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.hpp
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/pixel.cpp
 pixel.hpp
 /home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/pixel.hpp
-iostream
--
-fstream
--
-cstdio
--
-chrono
--
-opencv2/opencv.hpp
--
-opencv2/highgui.hpp
--
-
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/median.hpp
-opencv2/opencv.hpp
+cmath
 -
 
 /home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/pixel.hpp

@@ -40,6 +40,8 @@ int main(int argc, char **argv) {
 		"Adjust the brightness of the image.", false, true};
 	Option optionAdjustContrast = {"adjust-contrast",
 		"Adjust the contrast of the image.", false, true};
+	Option optionAdjustGamma = {"adjust-gamma",
+		"Adjust the gamma of the image.", false, true};
 	Option optionFilterBayer = {"filter-bayer",
 		"Apply a Bayer filter to the image.", false, false};
 	Option optionFilterBoxBlur = {"filter-box-blur",
@@ -66,6 +68,7 @@ int main(int argc, char **argv) {
 	cmd.AddOption(optionPathOut);
 	cmd.AddOption(optionAdjustBrightness);
 	cmd.AddOption(optionAdjustContrast);
+	cmd.AddOption(optionAdjustGamma);
 	cmd.AddOption(optionFilterBayer);
 	cmd.AddOption(optionFilterBoxBlur);
 	cmd.AddOption(optionFilterMedian);
@@ -104,7 +107,8 @@ int main(int argc, char **argv) {
 
 	list<Option*> suppliedProcessingOptions;
 	int adjustBrightnessShift = 0;
-	float adjustContrastFactor = 1;
+	float adjustContrastFactor = 1.0;
+	float adjustGammaGamma = 1.0;
 	int filterBoxBlurSize = 1;
 	int filterMedianSize = 1;
 
@@ -134,6 +138,16 @@ int main(int argc, char **argv) {
 				"%f", &adjustContrastFactor);
 			if (adjustContrastFactor < 0.0) {
 				cout << "The contrast factor should be a positive, real number."
+					<< endl;
+				return EXIT_FAILURE;
+			}
+
+		} else if (option == &optionAdjustGamma) {
+			suppliedProcessingOptions.push_back(&optionAdjustGamma);
+			sscanf(optionAdjustGamma.GetInput().c_str(),
+				"%f", &adjustGammaGamma);
+			if (adjustGammaGamma < 0.0) {
+				cout << "Gamma should be a positive, real number."
 					<< endl;
 				return EXIT_FAILURE;
 			}
@@ -221,6 +235,25 @@ int main(int argc, char **argv) {
 			if (adjustContrastFactor != 1.0) {
 				/* My implementation. */
 				Pixel::Contrast(outputImage, adjustContrastFactor);
+			}
+
+			if (verbose) {
+				tEnd = steady_clock::now();
+				cout << "Done in " 
+					<< duration_cast<duration<double>>(tEnd - tStart).count()
+					<< " seconds." << endl;
+			}
+
+		} else if (option == &optionAdjustGamma) {
+
+			if (verbose) {
+				cout << "Adjusting gamma... ";
+				tStart = steady_clock::now();
+			}
+
+			if (adjustGammaGamma != 1.0) {
+				/* My implementation. */
+				Pixel::Gamma(outputImage, adjustGammaGamma);
 			}
 
 			if (verbose) {
