@@ -46,6 +46,8 @@ int main(int argc, char **argv) {
 		"Apply a Bayer filter to the image.", false, false};
 	Option optionFilterBoxBlur = {"filter-box-blur",
 		"Apply a box blur filter of the given size to the image.", false, true};
+	Option optionFilterEdge = {"filter-edge",
+		"Apply an edge filter to the image.", false, false};
 	Option optionFilterMedian = {"filter-median",
 		"Apply a median filter of the given size to the image.", false, true};
 	Option optionViewInOut = {"view-images",
@@ -71,6 +73,7 @@ int main(int argc, char **argv) {
 	cmd.AddOption(optionAdjustGamma);
 	cmd.AddOption(optionFilterBayer);
 	cmd.AddOption(optionFilterBoxBlur);
+	cmd.AddOption(optionFilterEdge);
 	cmd.AddOption(optionFilterMedian);
 	cmd.AddOption(optionViewInOut);
 	cmd.AddOption(optionViewIn);
@@ -165,6 +168,9 @@ int main(int argc, char **argv) {
 				return EXIT_FAILURE;
 			}
 
+		} else if (option == &optionFilterEdge) {
+			suppliedProcessingOptions.push_back(&optionFilterEdge);
+		
 		} else if (option == &optionFilterMedian) {
 			suppliedProcessingOptions.push_back(&optionFilterMedian);
 			sscanf(optionFilterMedian.GetInput().c_str(),
@@ -297,6 +303,23 @@ int main(int argc, char **argv) {
 					Convolution::BoxBlur(outputImage, outputImage, filterBoxBlurSize);
 				}
 			}
+
+			if (verbose) {
+				tEnd = steady_clock::now();
+				cout << "Done in " 
+					<< duration_cast<duration<double>>(tEnd - tStart).count()
+					<< " seconds." << endl;
+			}
+
+		} else if (option == &optionFilterEdge) {
+
+			if (verbose) {
+				cout << "Applying egde filter... ";
+				tStart = steady_clock::now();
+			}
+			
+			/* My implementation. */
+			Convolution::EdgeDetect(outputImage, outputImage);
 
 			if (verbose) {
 				tEnd = steady_clock::now();

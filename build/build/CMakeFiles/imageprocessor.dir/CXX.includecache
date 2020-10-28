@@ -6,13 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/pixel.cpp
-pixel.hpp
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/pixel.hpp
-cmath
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/border.hpp
+opencv2/opencv.hpp
 -
 
-/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/pixel.hpp
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.cpp
+border.hpp
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/border.hpp
+convolution.hpp
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.hpp
+iostream
+-
+
+/home/rogvis/Documents/School/Haagse Hogeschool/2020-2021/Image Acquisition and Processing/Software/Process/source/convolution.hpp
 opencv2/opencv.hpp
 -
 

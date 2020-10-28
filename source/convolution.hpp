@@ -14,4 +14,5 @@ using namespace cv;
 namespace Convolution {
 
 	void BoxBlur(const Mat &input, Mat &output, int amount);
+	void EdgeDetect(const Mat &input, Mat &output);
 };
